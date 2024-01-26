@@ -54,6 +54,7 @@
 		int[][] board = new int[rows + 2][cols + 2];
 		int counter = 1;
 		while (in.hasNextLine()) {
+		// Bad indentation 
 		String x = in.readLine(); 
 		for(int i=0; i< x.length() ; i++){
 				if(x.charAt(i) == 'x'){
@@ -72,7 +73,19 @@
 		int n= board.length;
 		int m= board[0].length;
 		int[][] newboard= new int[n][m];
-
+				/* 
+  		notice this general note, running on arr[0].length is right in this case because 
+		the matrix is a rectangle/square but in the case of a 2D array that does not necessarily have the
+		same row length in all rows this code will fail.
+		for example: arr = {
+			{1,2,3},
+			{4},
+			{5,6},
+			{8,9,10,11,12,13,14,15},
+			{}
+		}
+		because of that, we need to run on arr[i].length at each iteration
+  		*/
 		for(int i=1 ; i<n-1; i++){
 			for(int j=1 ; j<m-1; j++){
 				newboard[i][j] = cellValue(board, i, j);
@@ -114,6 +127,7 @@
 		for ( int x = -1 ; x <= 1 ; x++ ) {
 			for (int y = -1; y <= 1; y++) {
 				boolean cell = ( x == 0 && y == 0 );
+				// a bit complex to understand 
 				if ((!cell) && (i+x>=0) && (i+x<board.length) && (j+y>=0) && (j+y<board[0].length) ) {
 					if ( board[i + x][j + y] == 1 ) {
 						livingNeighbors++ ;
